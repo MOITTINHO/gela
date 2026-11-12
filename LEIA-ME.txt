@@ -1,0 +1,44 @@
+MINHA GELADEIRA — VERSÃO NETLIFY BLOBS
+======================================
+
+O site usa uma página HTML estática e uma Netlify Function mínima para
+salvar cervejas e fotos em Netlify Blobs (armazenamento de objetos/chave-valor).
+Não precisa de MySQL, servidor próprio nem Supabase.
+
+PUBLICAÇÃO RECOMENDADA (GITHUB + NETLIFY)
+1. Extraia o ZIP.
+2. Crie um repositório PRIVADO no GitHub e envie TODOS os arquivos e pastas:
+   index.html, package.json, netlify.toml e netlify/functions/cervejas.mjs.
+3. Na Netlify: Add new project > Import an existing project > GitHub.
+4. Selecione o repositório e publique. Build command: deixe em branco;
+   Publish directory: . (um ponto). Netlify detectará as dependências.
+5. Em Site configuration > Environment variables, adicione:
+   Key: GELADEIRA_SENHA
+   Value: escolha uma senha forte de pelo menos 12 caracteres.
+   Marque como disponível para Functions, se o painel pedir um escopo.
+6. Faça um novo deploy após cadastrar a variável.
+7. Entre no endereço https://SEU-SITE.netlify.app com essa senha.
+8. Cadastre uma cerveja e confira que ela permanece após recarregar.
+
+IMPORTANTE
+- Arrastar apenas o index.html para Netlify Drop não publica a Function
+  de gravação! Publique o projeto completo com integração Git ou Netlify CLI.
+- Não coloque a senha em HTML, JavaScript, package.json ou repositório.
+  A senha fica apenas nas variáveis de ambiente da Netlify.
+- Não existe cadastro de contas: é uma coleção pessoal protegida por
+  UMA senha de acesso comum. Não é um sistema multiusuário.
+- Os dados ficam na Netlify, e continuam lá após atualizar o site.
+  Na Netlify: Data & Storage > Blobs > minha-geladeira-cervejas.
+- Fotos são otimizadas pelo navegador e salvas com o registro.
+- A hospedagem/Blobs podem estar sujeitos aos limites do seu plano.
+- Faça backups JSON periódicos. Exportação e restauração incluem as fotos.
+- Para importar cervejas da versão antiga, exporte antes o backup JSON
+  no site antigo e depois clique em Restaurar backup no site novo.
+- Para testes locais, use Netlify CLI / netlify dev, não apenas index.html.
+- Se excluir o projeto Netlify, não conte com o armazenamento como backup.
+
+ARQUIVOS
+index.html                 interface e formulário
+netlify/functions/cervejas.mjs  API de consulta, inclusão e exclusão
+netlify.toml               configuração de hospedagem
+package.json               dependência Netlify Blobs
